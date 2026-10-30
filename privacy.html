@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verbum — Privacy policy</title>
+<meta name="description" content="What Verbum does with your data: what stays on your Mac, what goes to the AI provider you choose, and how to reach us.">
+<link rel="canonical" href="https://verbum.design/privacy">
+<link rel="icon" href="icon.png">
+<style>
+  /* The landing's colours and type (index.html). */
+  :root {
+    --bg: #fbfaf7;
+    --text: #18181b;
+    --muted: #5f5f68;
+    --line: #e7e5df;
+    --accent: #4f46e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111113;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --line: #2a2a2f;
+      --accent: #818cf8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text); text-decoration: none; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  h1 { font-size: clamp(32px, 6vw, 44px); letter-spacing: -0.02em; line-height: 1.15; margin: 40px 0 8px; }
+  h2 { font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; margin: 40px 0 8px; }
+  p, li { margin: 8px 0 0; }
+  ul { padding-left: 20px; margin: 8px 0 0; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="/"><img src="icon.png" alt="">Verbum</a>
+
+  <h1>Privacy policy</h1>
+  <p class="muted">Last updated: October 30, 2026</p>
+
+  <p>Verbum is a Mac app that listens while you design and draws your screens in your design tool. It is made by Clément Meunier, in Québec, Canada. This page explains, in plain words, what happens to your data. In short: Verbum runs on your Mac, sends what you say and draw only to the AI provider you choose, and collects nothing about you unless you write to us or subscribe.</p>
+
+  <h2>What stays on your Mac</h2>
+  <ul>
+    <li><strong>Your sessions</strong>: transcripts, instructions and end-of-session reports are saved in <code>Documents/Verbum</code> on your Mac. We never receive them.</li>
+    <li><strong>Your API keys</strong>, if you add any, are kept in your Mac's keychain, never in a file.</li>
+    <li><strong>The Figma plugin</strong> only talks to the Verbum app on your Mac, through a private key made for your copy.</li>
+    <li><strong>Error logs</strong> stay on your Mac.</li>
+  </ul>
+
+  <h2>What leaves your Mac, and where it goes</h2>
+  <ul>
+    <li><strong>Speech recognition</strong> is done by macOS. When your Mac supports it, it happens on the device; otherwise macOS may send audio to Apple, under <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</li>
+    <li><strong>The AI provider you choose</strong> (for example Anthropic, OpenAI, DeepSeek, or a model running on your own Mac) receives what is needed to draw: what you said, your instructions, the content of the screens being drawn, and, if you pick a project folder, the files your agent reads in it. This goes straight from your Mac to that provider, with your account or key, under that provider's terms and privacy policy. Verbum does not receive a copy.</li>
+    <li><strong>Your agent</strong> (Claude Code, opencode or another), and <strong>your design tool</strong> (Figma, Paper or another) work under their own terms and privacy policies.</li>
+    <li><strong>Updates</strong>: the app checks for a newer version through update.electronjs.org and downloads it from GitHub. Like any web request, these services see your IP address, the app's version and your Mac's platform.</li>
+    <li><strong>Reports</strong>: the page that shows a session report loads a small text-formatting library from cdn.jsdelivr.net, which sees your IP address. The report itself is not sent.</li>
+  </ul>
+  <p>Verbum has no account, no tracking and no analytics.</p>
+
+  <h2>What we receive, only if you choose to</h2>
+  <ul>
+    <li><strong>Feedback</strong>: when you use “Send feedback” or rate a session, a form opens in your browser. We receive only what you send: your rating, your message, the Verbum version and the design tool, and your email if you give it. Forms are handled by <a href="https://tally.so/help/privacy-policy">Tally</a> (Belgium, data stored in the European Union). Nothing is sent until you press Submit, and you can edit or remove what is filled in.</li>
+    <li><strong>Release notes by email</strong>: if you subscribe, we keep your email address to send one short email per release. Emails are handled by <a href="https://buttondown.com/legal/privacy">Buttondown</a> (United States). You confirm by email before anything is sent, and every email has an unsubscribe link.</li>
+  </ul>
+  <p>We use this only to improve Verbum and to tell you about new versions. We never sell or share it.</p>
+
+  <h2>This website</h2>
+  <p>verbum.design uses no cookies and no analytics. It is hosted by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Pages</a>, which, like any host, logs visitors' IP addresses for security.</p>
+
+  <h2>Data stored outside Québec</h2>
+  <p>Feedback is stored in the European Union (Tally) and newsletter emails in the United States (Buttondown). Before choosing them, we checked that they protect personal information adequately: both are established services with their own privacy commitments, and they keep only what you send.</p>
+
+  <h2>How long we keep it</h2>
+  <ul>
+    <li>Feedback: as long as it helps improve Verbum, and at most 3 years.</li>
+    <li>Newsletter: until you unsubscribe.</li>
+  </ul>
+
+  <h2>Your rights</h2>
+  <p>You can ask to see, correct or delete what we hold about you, or withdraw your consent at any time. Write to <a href="mailto:hello@verbum.design">hello@verbum.design</a>; we answer within 30 days. If you are not satisfied with our answer, you can contact Québec's <a href="https://www.cai.gouv.qc.ca/">Commission d'accès à l'information</a>, or the <a href="https://www.priv.gc.ca/">Office of the Privacy Commissioner of Canada</a>.</p>
+
+  <h2>Who is responsible</h2>
+  <p>Clément Meunier, Québec, Canada, is responsible for Verbum and for the protection of personal information: <a href="mailto:hello@verbum.design">hello@verbum.design</a>.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, we will update this page and its date. If a change affects what we collect, we will say so in the release notes first.</p>
+
+  <footer>Verbum · <a href="/">verbum.design</a> · <a href="/#terms">Terms of use</a></footer>
+</main>
+</body>
+</html>
