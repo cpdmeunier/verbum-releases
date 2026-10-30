@@ -58,15 +58,34 @@
     }
   }
 
+  // --- On a phone, the .dmg is of no use: a second button sends the page to the Mac (share sheet, AirDrop),
+  // or copies its link where there is no share sheet.
+  if (matchMedia('(max-width: 700px) and (pointer: coarse)').matches) {
+    const URL_ = 'https://verbum.design';
+    document.querySelectorAll('.share').forEach((b) => {
+      b.hidden = false;
+      const label = b.querySelector('span');
+      b.addEventListener('click', async () => {
+        if (navigator.share) {
+          try { await navigator.share({ title: 'Verbum', text: 'Verbum, for my Mac', url: URL_ }); } catch {}
+          return;
+        }
+        try { await navigator.clipboard.writeText(URL_); label.textContent = 'Link copied'; } catch {}
+      });
+    });
+  }
+
   // --- How it works: a tab, a dot or a card behind brings its step to the front; the others follow in order.
   const tabs = [...document.querySelectorAll('.tab')], dots = [...document.querySelectorAll('.dot')];
   const cards = [...document.querySelectorAll('.card')], stack = document.getElementById('stack');
+  const now = document.querySelector('.tab-now'); // on a phone, the active step's text under the short tabs
   if (!tabs.length) return;
   const select = (active, focus) => {
     tabs.forEach((t, i) => { t.setAttribute('aria-selected', i === active); t.tabIndex = i === active ? 0 : -1; });
     dots.forEach((d, i) => d.setAttribute('aria-current', i === active));
     cards.forEach((c) => { c.dataset.pos = (Number(c.dataset.step) - active + 3) % 3; });
     stack.setAttribute('aria-labelledby', tabs[active].id);
+    if (now) now.textContent = tabs[active].querySelector('p').textContent;
     if (focus) tabs[active].focus();
   };
   tabs.forEach((t, i) => {
@@ -80,4 +99,5 @@
   });
   dots.forEach((d, i) => d.addEventListener('click', () => select(i)));
   cards.forEach((c) => c.addEventListener('click', () => select(Number(c.dataset.step))));
+  select(0);
 })();

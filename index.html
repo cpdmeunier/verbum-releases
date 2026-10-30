@@ -29,6 +29,11 @@
   .phrase .rest { color: var(--faint); }
   .phrase .caret { display: inline-block; width: 0.5em; height: 1.05em; margin-left: 1px; vertical-align: -0.18em; background: var(--yellow); }
   .phrase.fade { opacity: 0; transition: opacity 0.4s; }
+  /* On a phone, a .dmg is of no use: the link goes to the Mac (share sheet, AirDrop), or is copied. */
+  .btn.ghost[hidden] { display: none; }
+  .btn.ghost { background: transparent; border: 1px solid var(--line-strong); cursor: pointer; }
+  .btn.ghost:hover { filter: none; border-color: var(--muted); }
+  .btn.ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 
   /* Agent alone vs Verbum */
   .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
@@ -45,6 +50,7 @@
   .tab:focus-visible { outline: 1.5px solid var(--text); outline-offset: 4px; }
   .tab .t { display: flex; align-items: center; gap: 10px; font: 500 20px var(--mono); letter-spacing: -0.03em; color: var(--faint); }
   .tab p { color: var(--faint); }
+  .tab .short, .tab-now { display: none; }
   .tab[aria-selected="true"] { border-top-color: var(--c); }
   .tab[aria-selected="true"] .t { color: var(--text); }
   .tab[aria-selected="true"] p { color: var(--muted); }
@@ -90,9 +96,10 @@
   .note { font-size: 14px; line-height: 22px; color: var(--faint); }
 
   /* Closing call, then product updates */
-  .closing { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 36px; padding: 128px 0; }
+  .closing { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 36px; padding-top: 128px; padding-bottom: 128px; }
   .closing svg { width: 56px; height: 56px; }
   .closing h2 { font: 500 64px/68px var(--mono); letter-spacing: -0.05em; }
+  .closing .nw { white-space: nowrap; }
   .closing small { font: 13px var(--mono); color: var(--faint); }
   /* Release notes by email (Buttondown): its plain form, no script or cookie; Buttondown asks to confirm by email. */
   .news { width: min(460px, 100%); display: flex; flex-direction: column; gap: 10px; margin-top: 12px; text-align: left; }
@@ -112,13 +119,30 @@
     .hero h1 { font-size: 52px; line-height: 56px; }
     .head { margin-bottom: 40px; }
     .compare { grid-template-columns: 1fr; }
-    .compare > .th:first-child, .compare .was { display: none; }
-    .tabs { grid-template-columns: 1fr; }
-    .tab, .tab:first-child, .tab:last-child { padding: 20px 0; border-top: 1px solid var(--line); margin: 0; }
-    .tab[aria-selected="true"] { border-top: 2px solid var(--c); }
-    .stack { margin-top: 40px; }
+    .cta { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 36px; }
+    .btn { justify-content: center; }
+    .cta small { text-align: center; padding-top: 4px; }
+    .hero .works { justify-content: center; margin-top: 28px; }
+    /* Each pair stays a pair: the agent-alone way, struck through, above the Verbum way. */
+    .compare > .th { display: none; }
+    .compare > * { font-size: 19px; line-height: 27px; }
+    .compare .was { padding: 20px 0 6px; border: 0; font-size: 15px; line-height: 22px; text-decoration: line-through; text-decoration-color: var(--line-strong); }
+    .compare .was + * { padding-top: 0; }
+    /* Three short tabs on one line, the active step's text below them. */
+    .tab, .tab:first-child, .tab:last-child { padding: 14px 0 0; }
+    .tabs { column-gap: 12px; }
+    .tab .t { font-size: 13px; letter-spacing: 0; gap: 8px; }
+    .tab p, .tab .full { display: none; }
+    .tab .short { display: inline; }
+    .tab-now { display: block; margin-top: 20px; color: var(--muted); }
+    .stack { margin-top: 32px; }
+    /* The step number moves onto the title's line, the text gets the full width. */
+    ol.steps li { position: relative; display: block; padding: 24px 0; }
+    ol.steps li::before { position: absolute; left: 0; top: 24px; font-size: 14px; line-height: 25px; }
+    ol.steps .body .h3 { padding-left: 32px; font-size: 20px; }
     .rows > div { flex-direction: column; gap: 4px; }
-    .closing { padding: 88px 0; }
+    .closing { padding-top: 88px; padding-bottom: 88px; gap: 24px; }
+    .closing .btn, .closing .news { align-self: stretch; width: auto; }
     .closing h2 { font-size: 44px; line-height: 48px; }
   }
 </style>
@@ -151,6 +175,7 @@
         <p class="lead">Other design tools make you stop: to word a prompt, to answer a question, to wait. Verbum never does. Talk the way you would in a brainstorm, and your screens keep up, right in your design tool.</p>
         <div class="cta">
           <a class="btn" href="https://github.com/cpdmeunier/verbum-releases/releases/latest/download/Verbum-mac-arm64.dmg">Download for Mac <span aria-hidden="true">↓</span></a>
+          <button class="btn ghost share" type="button" hidden><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v8M3.5 4.5 7 1l3.5 3.5M1.5 8v4.5h11V8"/></svg><span>Send the link to my Mac</span></button>
           <small>Free · macOS · Apple Silicon</small>
         </div>
         <p class="works">Works with
@@ -190,14 +215,15 @@
           <p>Think out loud. Mac dictation transcribes on your machine. No push-to-talk, no prompt to write.</p>
         </button>
         <button class="tab" role="tab" id="tab-1" aria-selected="false" aria-controls="stack" tabindex="-1" style="--c:var(--green)">
-          <span class="t"><span class="sq" style="background:var(--green)"></span>Verbum listens</span>
+          <span class="t"><span class="sq" style="background:var(--green)"></span><span class="full">Verbum listens</span><span class="short">Listens</span></span>
           <p>Small talk is ignored. Each real idea becomes an instruction, right away.</p>
         </button>
         <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="stack" tabindex="-1" style="--c:var(--yellow)">
-          <span class="t"><span class="sq" style="background:var(--yellow)"></span>Your agent draws</span>
+          <span class="t"><span class="sq" style="background:var(--yellow)"></span><span class="full">Your agent draws</span><span class="short">Draws</span></span>
           <p>Screens appear in your design tool while you keep talking.</p>
         </button>
       </div>
+      <p class="tab-now" aria-hidden="true"></p>
       <div class="stack" id="stack" role="tabpanel" aria-labelledby="tab-0">
         <figure class="card" data-step="0" data-pos="0"><img src="img/step-1-you-talk.webp" width="1920" height="1200" alt="Verbum's window during a session: the orb breathes with your voice, above the sentence it just heard."></figure>
         <figure class="card" data-step="1" data-pos="1"><img src="img/step-2-verbum-listens.webp" width="1920" height="1200" alt="Verbum's instructions: each idea you said, with its screens marked done, drawing or next." loading="lazy"></figure>
@@ -269,8 +295,9 @@
   <section>
     <div class="wrap closing">
       <svg aria-hidden="true"><use href="#pixel-v"/></svg>
-      <h2>Say it. See it.</h2>
+      <h2><span class="nw">Say it.</span> <span class="nw">See it.</span></h2>
       <a class="btn" href="https://github.com/cpdmeunier/verbum-releases/releases/latest/download/Verbum-mac-arm64.dmg">Download for Mac <span aria-hidden="true">↓</span></a>
+      <button class="btn ghost share" type="button" hidden><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v8M3.5 4.5 7 1l3.5 3.5M1.5 8v4.5h11V8"/></svg><span>Send the link to my Mac</span></button>
       <small>Free · macOS, Apple Silicon · Updates itself</small>
       <div class="news">
         <label class="label" for="news-email">Product updates</label>
