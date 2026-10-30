@@ -7,44 +7,44 @@
 <meta name="description" content="What Verbum does with your data: what stays on your Mac, what goes to the AI provider you choose, and how to reach us.">
 <link rel="canonical" href="https://verbum.design/privacy">
 <link rel="icon" href="icon.png">
+<meta name="theme-color" content="#1D1A1A">
+<link rel="stylesheet" href="style.css">
 <style>
-  /* The landing's colours and type (index.html). */
-  :root {
-    --bg: #fbfaf7;
-    --text: #18181b;
-    --muted: #5f5f68;
-    --line: #e7e5df;
-    --accent: #4f46e5;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #111113;
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --line: #2a2a2f;
-      --accent: #818cf8;
-    }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text); text-decoration: none; }
-  .brand img { width: 32px; height: 32px; border-radius: 8px; }
-  h1 { font-size: clamp(32px, 6vw, 44px); letter-spacing: -0.02em; line-height: 1.15; margin: 40px 0 8px; }
-  h2 { font-size: 22px; letter-spacing: -0.01em; line-height: 1.2; margin: 40px 0 8px; }
-  p, li { margin: 8px 0 0; }
-  ul { padding-left: 20px; margin: 8px 0 0; }
-  .muted { color: var(--muted); }
-  a { color: var(--accent); }
-  footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  /* A long read: one narrow column, on the landing's identity (style.css). */
+  .policy { max-width: 760px; margin: 0 auto; padding: 96px var(--gutter) 112px; }
+  .policy h1 { font: 500 48px/54px var(--mono); letter-spacing: -0.04em; }
+  .policy h2 { font: 500 22px/1.25 var(--mono); letter-spacing: -0.03em; margin: 48px 0 8px; }
+  .policy p, .policy li { margin: 10px 0 0; color: var(--muted); line-height: 26px; }
+  .policy ul { padding-left: 20px; margin: 8px 0 0; }
+  .policy strong { font-weight: 500; color: var(--text); }
+  .policy a { color: var(--text); }
+  .policy code { font-size: 0.9em; }
 </style>
 </head>
 <body>
-<main>
-  <a class="brand" href="/"><img src="icon.png" alt="">Verbum</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="paint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9E94C"/><stop offset=".35" stop-color="#5CD27A"/><stop offset=".6" stop-color="#FF2D65"/><stop offset="1" stop-color="#E06BC3"/></linearGradient>
+    <symbol id="pixel-v" viewBox="0 0 18 18"><rect width="6" height="6" fill="#F6F5F2"/><rect x="3" y="6" width="6" height="6" fill="#F6F5F2"/><rect x="6" y="12" width="6" height="6" fill="#F6F5F2"/><rect x="12" width="6" height="6" fill="url(#paint)"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><svg aria-hidden="true"><use href="#pixel-v"/></svg>Verbum</a>
+    <nav class="links" aria-label="Main">
+      <a href="/#how">How it works</a>
+      <a href="/#what">What it is</a>
+      <a href="/#start">Get started</a>
+      <a class="outline" href="https://github.com/cpdmeunier/verbum-releases/releases/latest/download/Verbum-mac-arm64.dmg">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main class="policy">
 
   <h1>Privacy policy</h1>
-  <p class="muted">Last updated: October 30, 2026</p>
+  <p class="mono faint" style="font-size:13px">Last updated: October 30, 2026</p>
 
   <p>Verbum is a Mac app that listens while you design and draws your screens in your design tool. It is made by Clément Meunier, in Québec, Canada. This page explains, in plain words, what happens to your data. In short: Verbum runs on your Mac, sends what you say and draw only to the AI provider you choose, and collects nothing about you unless you write to us or subscribe.</p>
 
@@ -94,7 +94,13 @@
   <h2>Changes</h2>
   <p>If this policy changes, we will update this page and its date. If a change affects what we collect, we will say so in the release notes first.</p>
 
-  <footer>Verbum · <a href="/">verbum.design</a> · <a href="/#terms">Terms of use</a></footer>
 </main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="/"><svg aria-hidden="true"><use href="#pixel-v"/></svg>Verbum · Design without stopping</a>
+    <nav aria-label="Legal"><span>© 2026 Clément Meunier</span><a href="legal">Legal</a><a href="privacy">Privacy</a></nav>
+  </div>
+</footer>
 </body>
 </html>

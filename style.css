@@ -1,0 +1,91 @@
+/* Verbum's identity (docs/design.md), shared by the landing, Legal and Privacy pages.
+   Warm black, off-white, sharp corners; colour only says something. Fonts are served from here:
+   nothing is loaded from another site. */
+@font-face { font-family: "DM Mono"; font-weight: 400; font-display: swap; src: url(fonts/dm-mono-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "DM Mono"; font-weight: 500; font-display: swap; src: url(fonts/dm-mono-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "DM Mono"; font-weight: 400; font-display: swap; src: url(fonts/dm-mono-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "DM Mono"; font-weight: 500; font-display: swap; src: url(fonts/dm-mono-latin-ext-500-normal.woff2) format("woff2"); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "DM Sans"; font-weight: 400; font-display: swap; src: url(fonts/dm-sans-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "DM Sans"; font-weight: 500; font-display: swap; src: url(fonts/dm-sans-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "DM Sans"; font-weight: 400; font-display: swap; src: url(fonts/dm-sans-latin-ext-400-normal.woff2) format("woff2"); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "DM Sans"; font-weight: 500; font-display: swap; src: url(fonts/dm-sans-latin-ext-500-normal.woff2) format("woff2"); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  color-scheme: dark;
+  --black: #1D1A1A;
+  --deep: #110E0E;
+  --line: #2E2929;
+  --line-strong: #3A3434;
+  --text: #F6F5F2;
+  --muted: #A39D9B;
+  --faint: #7A7372;
+  --green: #5CD27A;
+  --yellow: #F9E94C;
+  --pink: #FF2D65;
+  --act: linear-gradient(90deg, #FF2D65 0%, #A05D6F 84%, #8D6670 100%);
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gutter: 72px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--black); color: var(--text); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 1.5px solid var(--text); outline-offset: 3px; }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+.mono { font-family: var(--mono); }
+.muted { color: var(--muted); }
+.faint { color: var(--faint); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Nav */
+.nav { border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 24px; padding-bottom: 24px; }
+.brand { display: flex; align-items: center; gap: 12px; font: 500 20px var(--mono); letter-spacing: -0.04em; text-decoration: none; }
+.brand svg { width: 22px; height: 22px; }
+.links { display: flex; align-items: center; gap: 36px; font: 500 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.links a { color: var(--muted); text-decoration: none; }
+.links a:hover { color: var(--text); }
+.links .outline { color: var(--text); border: 1px solid var(--line-strong); padding: 10px 16px; }
+.links .outline:hover { border-color: var(--muted); }
+
+/* Buttons and type */
+.btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 26px; background: var(--act); color: var(--text); font: 500 15px var(--mono); letter-spacing: 0.02em; text-decoration: none; }
+.btn:hover { filter: brightness(1.08); }
+.h2 { font: 500 48px/54px var(--mono); letter-spacing: -0.04em; }
+.h3 { font: 500 22px/1.25 var(--mono); letter-spacing: -0.03em; }
+.lead { font-size: 20px; line-height: 31px; color: var(--muted); }
+.label { font: 500 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.sq { width: 6px; height: 6px; flex-shrink: 0; display: inline-block; }
+section { border-top: 1px solid var(--line); padding: 112px 0; }
+section.deep { background: var(--deep); }
+code, pre { font-family: var(--mono); }
+
+/* Two columns: a title on the left, rows on the right */
+.split { display: flex; gap: 96px; }
+.split > :first-child { width: 520px; flex-shrink: 0; display: flex; flex-direction: column; gap: 28px; }
+.split > :last-child { flex: 1; min-width: 0; border-top: 1px solid var(--line-strong); }
+
+/* Footer */
+.foot { border-top: 1px solid var(--line); }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 40px; padding-bottom: 48px; font: 12px var(--mono); color: var(--faint); }
+.foot .brand { font: 12px var(--mono); letter-spacing: 0; gap: 10px; }
+.foot .brand svg { width: 14px; height: 14px; }
+.foot nav { display: flex; gap: 16px; }
+.foot a { color: var(--faint); }
+.foot a:hover { color: var(--text); }
+
+@media (max-width: 1100px) {
+  :root { --gutter: 40px; }
+  .split { flex-direction: column; gap: 48px; }
+  .split > :first-child { width: auto; }
+}
+@media (max-width: 700px) {
+  :root { --gutter: 16px; }
+  section { padding: 72px 0; }
+  .links a:not(.outline) { display: none; }
+  .h2 { font-size: 36px; line-height: 40px; }
+  .lead { font-size: 18px; line-height: 28px; }
+}
